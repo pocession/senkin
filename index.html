@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW ">
+  <head>
+    <meta charset="UTF-8" />
+    <title>One word for one thousand</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="letters flex-container">
+      <div><h1 class="score">0</h1></div>
+      <div><button class="button button-next">Next</button></div>
+      <div data-letter="65" class="letters flex-container-test">
+        <div
+          data-letter="65"
+          class="letter flex-container-test-input"
+          tabindex="1"
+        >
+          成
+        </div>
+        <div
+          data-letter="65"
+          class="letter flex-container-test-input"
+          tabindex="2"
+        >
+          乘
+        </div>
+      </div>
+      <div data-letter="65" class="letter">龍</div>
+      <div data-letter="65" class="letter">快</div>
+      <div data-letter="65" class="letter">婿</div>
+    </div>
+    <canvas id="canvas" width="200" height="100" class="canvas"> </canvas>
+  </body>
+  <script>
+    const correctAnswer = "乘";
+    const testInputs = document.querySelectorAll(".flex-container-test-input");
+    const scoreText = document.querySelector(".score");
+    var score = Number(scoreText.textContent.trim());
+    const buttonNext = document.querySelector(".button-next");
+    var result = 0;
+
+    function clear() {
+      for (var i = 0; i < testInputs.length; i++) {
+        var item = testInputs[i];
+        item.style.backgroundColor = "white";
+      }
+    }
+
+    testInputs.forEach((item) => item.addEventListener("click", selected));
+
+    function selected(e) {
+      clear();
+      if (this.textContent.trim() === correctAnswer) {
+        this.style.backgroundColor = "green";
+        return (result = 1);
+      } else {
+        this.style.backgroundColor = "red";
+        return (result = -1);
+      }
+    }
+
+    buttonNext.addEventListener("click", updateScore);
+
+    function updateScore(e) {
+      score += result;
+      scoreText.textContent = score.toString();
+    }
+
+    function drawCircle() {
+      var ctx = c.getContext("2d");
+      ctx.beginPath();
+      ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+      ctx.stroke();
+    }
+
+    function drawText(text) {
+      var ctx = c.getContext("2d");
+      ctx.font = c.height / 4 + "px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillStyle = "rgb(0, 0, 0)";
+
+      ctx.fillText(text, 95, 50);
+    }
+
+    function cleanText() {
+      var ctx = c.getContext("2d");
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.clearRect(0, 0, c.width, c.height);
+    }
+
+    function getTotalSecond() {
+      const Time = new Date();
+      const TimeTotalSec =
+        Time.getHours() * 3600 + Time.getMinutes() * 60 + Time.getSeconds();
+      return TimeTotalSec;
+    }
+
+    function updateText(startTimeSec) {
+      cleanText();
+      drawCircle();
+
+      const currentTimeSec = getTotalSecond();
+
+      const timeLapsed = currentTimeSec - startTimeSec;
+      const timeUpdated = 46 - timeLapsed;
+      if (timeUpdated === 0) {
+        clearInterval(timer);
+        console.log("stop!");
+      }
+
+      var ctx = c.getContext("2d");
+      ctx.font = c.height / 4 + "px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillStyle = "rgb(0, 0, 0)";
+      ctx.fillText(timeUpdated, 95, 50);
+    }
+
+    const c = document.getElementById("canvas");
+    let isCount = false;
+
+    drawCircle();
+    c.addEventListener("mousedown", (e) => {
+      if (isCount) return; // stop count down if it is already started
+      drawText("45");
+      isCount = true;
+
+      const startTimeSec = getTotalSecond();
+      cleanText();
+      drawCircle();
+
+      timer = setInterval(updateText, 1000, startTimeSec);
+      isCount = false;
+    });
+  </script>
+</html>

@@ -1,0 +1,93 @@
+html {
+  font-size: 10px;
+  /* background: url("./background.jpg") bottom center; */
+  background-size: cover;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  display: block;
+  top: 12.5%;
+  left: 50%;
+  position: absolute;
+}
+
+.flex-container-test {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  right: 25%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* when mouse hover around, add a background color */
+.flex-container-test-input:hover {
+  opacity: 100;
+  cursor: pointer;
+  background-color: #0eb2ff !important;
+}
+
+/* When the checkbox is checked, add a yellow background */
+/*.flex-container-test-input:focus {
+  background-color: #25f321;
+}
+*/
+
+.letter {
+  border: 0.4rem solid black;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  font-size: 5rem;
+  padding: 1rem 0.5rem;
+  transition: all 0.27s ease;
+  width: 10rem;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 0.5rem black;
+}
+
+.button {
+  background-color: rgba(0, 0, 0, 0.4); /* same as letter div */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  top: 10%;
+  left: 6.25%;
+  position: relative;
+}
+
+.button:hover {
+  opacity: 100;
+  cursor: pointer;
+  background-color: #0eb2ff !important;
+}
+
+.score {
+  font-size: 32px;
+  top: 5%;
+  left: 22.5%;
+  position: relative;
+}
+
+.canvas {
+  border: 5px solid #000000;
+}

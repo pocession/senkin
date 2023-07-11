@@ -1,0 +1,15 @@
+.wrapper {
+  display: grid;
+  grid-template-rows: 2fr 2fr 2fr 2fr;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+}
+
+.test {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  top: 50% + 45px;
+  right: 11.25px;
+  position: relative;
+}
