@@ -12,15 +12,19 @@
       <div data-letter="65" class="letters flex-container-test">
         <div
           data-letter="65"
+          data-answer=""
           class="letter flex-container-test-input"
           tabindex="1"
+          onclick="checked(event)"
         >
           成
         </div>
         <div
           data-letter="65"
+          data-answer=""
           class="letter flex-container-test-input"
           tabindex="2"
+          onclick="checked(event)"
         >
           乘
         </div>
@@ -39,33 +43,57 @@
     const buttonNext = document.querySelector(".button-next");
     var result = 0;
 
-    function clear() {
-      for (var i = 0; i < testInputs.length; i++) {
-        var item = testInputs[i];
+    // functions for color changes and updating scores
+
+    /*
+    The function 'clear' changes the bg color of both inputs to white when clicked.
+    The function 'checked'  compares the user's choice with the correct answer and return the result.
+    The function 'revealAnswer' changes the input color according to the result.
+    The funciton 'updateScore' updates the score.
+    */
+
+    function clear(Inputs) {
+      for (var i = 0; i < Inputs.length; i++) {
+        var item = Inputs[i];
         item.style.backgroundColor = "white";
       }
     }
 
-    testInputs.forEach((item) => item.addEventListener("click", selected));
-
-    function selected(e) {
-      clear();
-      if (this.textContent.trim() === correctAnswer) {
-        this.style.backgroundColor = "green";
+    function checked(e) {
+      e = e;
+      var target = e.target;
+      clear(testInputs);
+      target.style.backgroundColor = "#0eb2ff";
+      if (target.textContent.trim() === correctAnswer) {
+        target.dataset.answer = 1;
         return (result = 1);
       } else {
-        this.style.backgroundColor = "red";
+        target.dataset.answer = -1;
         return (result = -1);
       }
     }
 
-    buttonNext.addEventListener("click", updateScore);
+    function revealAnswer(item) {
+      if (item.dataset.answer === "1") {
+        console.log("right answer");
+        item.style.backgroundColor = "green";
+      } else if (item.dataset.answer === "-1") {
+        console.log("wrong answer");
+        item.style.backgroundColor = "red";
+      } else {
+        return;
+      }
+    }
 
     function updateScore(e) {
+      testInputs.forEach((item) => revealAnswer(item));
       score += result;
       scoreText.textContent = score.toString();
     }
 
+    buttonNext.addEventListener("click", updateScore);
+
+    // functions for timer
     function drawCircle() {
       var ctx = c.getContext("2d");
       ctx.beginPath();
