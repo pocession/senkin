@@ -47,6 +47,7 @@
     const buttonNext = document.querySelector(".button-next");
     var result = 0;
 
+    // Initiate the game
     function generateQuestion(problem) {
       for (i = 0; i < testInputs.length; i++) {
         testInputs[i].textContent = problem[0][i];
@@ -58,6 +59,7 @@
     }
 
     generateQuestion(problem);
+
     // functions for color changes and updating scores
 
     /*
@@ -104,6 +106,9 @@
       testInputs.forEach((item) => revealAnswer(item));
       score += result;
       scoreText.textContent = score.toString();
+      setTimeout(function () {
+        location.reload();
+      }, 3000);
     }
 
     buttonNext.addEventListener("click", updateScore);
