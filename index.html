@@ -16,33 +16,42 @@
           class="letter flex-container-test-input"
           tabindex="1"
           onclick="checked(event)"
-        >
-          成
-        </div>
+        ></div>
         <div
           data-letter="65"
           data-answer=""
           class="letter flex-container-test-input"
           tabindex="2"
           onclick="checked(event)"
-        >
-          乘
-        </div>
+        ></div>
       </div>
-      <div data-letter="65" class="letter">龍</div>
-      <div data-letter="65" class="letter">快</div>
-      <div data-letter="65" class="letter">婿</div>
+      <div data-letter="65" class="letter flex-container-test-other"></div>
+      <div data-letter="65" class="letter flex-container-test-other"></div>
+      <div data-letter="65" class="letter flex-container-test-other"></div>
     </div>
     <canvas id="canvas" width="200" height="100" class="canvas"> </canvas>
   </body>
   <script>
+    const data = [["乘", "成"], "龍", "快", "婿"];
     const correctAnswer = "乘";
     const testInputs = document.querySelectorAll(".flex-container-test-input");
+    const testOthers = document.querySelectorAll(".flex-container-test-other");
     const scoreText = document.querySelector(".score");
     var score = Number(scoreText.textContent.trim());
     const buttonNext = document.querySelector(".button-next");
     var result = 0;
 
+    function generateQuestion(data) {
+      for (i = 0; i < testInputs.length; i++) {
+        testInputs[i].textContent = data[0][i];
+      }
+
+      for (i = 0; i < testOthers.length; i++) {
+        testOthers[i].textContent = data[i + 1];
+      }
+    }
+
+    generateQuestion(data);
     // functions for color changes and updating scores
 
     /*
