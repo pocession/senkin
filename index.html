@@ -32,8 +32,14 @@
     <canvas id="canvas" width="200" height="100" class="canvas"> </canvas>
   </body>
   <script>
-    const data = [["乘", "成"], "龍", "快", "婿"];
-    const correctAnswer = "乘";
+    const data = [
+      [["乘", "成"], "龍", "快", "婿"],
+      [["望", "忘"], "子", "成", "龍"],
+      [["言", "鹽"], "多", "必", "失"],
+    ];
+
+    const problem = data[Math.floor(Math.random() * data.length)];
+    const correctAnswer = problem[0][0];
     const testInputs = document.querySelectorAll(".flex-container-test-input");
     const testOthers = document.querySelectorAll(".flex-container-test-other");
     const scoreText = document.querySelector(".score");
@@ -41,17 +47,17 @@
     const buttonNext = document.querySelector(".button-next");
     var result = 0;
 
-    function generateQuestion(data) {
+    function generateQuestion(problem) {
       for (i = 0; i < testInputs.length; i++) {
-        testInputs[i].textContent = data[0][i];
+        testInputs[i].textContent = problem[0][i];
       }
 
       for (i = 0; i < testOthers.length; i++) {
-        testOthers[i].textContent = data[i + 1];
+        testOthers[i].textContent = problem[i + 1];
       }
     }
 
-    generateQuestion(data);
+    generateQuestion(problem);
     // functions for color changes and updating scores
 
     /*
