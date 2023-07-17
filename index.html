@@ -2,13 +2,18 @@
 <html lang="zh-Hant-TW ">
   <head>
     <meta charset="UTF-8" />
-    <title>One word for one thousand</title>
+    <title>Senkin (千金)</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="letters flex-container">
       <div><h1 class="score">0</h1></div>
-      <div><button class="button button-next">Next</button></div>
+      <div class="buttons button-container">
+        <div>
+          <button class="button button-reload" tabindex="1">Reload</button>
+        </div>
+        <div><button class="button button-next" tabindex="2">Next</button></div>
+      </div>
       <div data-letter="65" class="letters flex-container-test">
         <div
           data-letter="65"

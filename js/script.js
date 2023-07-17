@@ -6,6 +6,7 @@ const data = [
 ];
 
 const buttonNext = document.querySelector(".button-next");
+const buttonReload = document.querySelector(".button-reload");
 const testInputs = document.querySelectorAll(".flex-container-test-input");
 const testOthers = document.querySelectorAll(".flex-container-test-other");
 const problem = data[Math.floor(Math.random() * data.length)];
@@ -117,6 +118,14 @@ function updateScore(e) {
 }
 
 buttonNext.addEventListener("click", updateScore);
+
+// this function reload the game and clean all the local storages
+function reload() {
+  localStorage.clear();
+  location.reload();
+  console.log("reloaded and clean all the local storage!!");
+}
+buttonReload.addEventListener("click", reload);
 
 // functions for timer
 function drawCircle() {
