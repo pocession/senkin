@@ -12,7 +12,7 @@ This is the repository for the **Senkin (千金)** project. It's a JavaScript-ba
 
 To run the game locally, follow these steps:
 
-1. Clone the repository: `git clone [repository URL]`
+1. Clone the repository: `git clone https://github.com/pocession/senkin`
 2. Navigate to the project directory: `cd senkin`
 3. Open the `index.html` file in a web browser.
 
