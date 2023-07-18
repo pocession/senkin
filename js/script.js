@@ -13,6 +13,7 @@ const problem = data[Math.floor(Math.random() * data.length)];
 const correctAnswer = problem[0][0];
 const scoreText = document.querySelector(".score");
 var isNewGame = localStorage.getItem("isNewGame");
+const countDownSec = 5 * data.length + 1;
 
 function generateQuestion(problem) {
   for (i = 0; i < problem.length; i++) {
@@ -204,7 +205,7 @@ function updateText(startTimeSec) {
   const currentTimeSec = getTotalSecond();
 
   const timeLapsed = currentTimeSec - startTimeSec;
-  const timeUpdated = 46 - timeLapsed;
+  const timeUpdated = countDownSec - timeLapsed;
   if (timeUpdated === 0) {
     clearInterval(timer);
     console.log("stop!");
@@ -224,7 +225,7 @@ let isCount = false;
 drawCircle();
 c.addEventListener("mousedown", (e) => {
   if (isCount) return; // stop count down if it is already started
-  drawText("45");
+  drawText(countDownSec);
   isCount = true;
 
   const startTimeSec = getTotalSecond();
