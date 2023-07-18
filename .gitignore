@@ -1,5 +1,5 @@
-# all test filesqq
-
+# all test files
+./test/*
 *test*
 
 # remove the mac hidden files
