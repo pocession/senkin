@@ -1,8 +1,8 @@
 // Select elements
 const data = [
   [["乘", "成"], "龍", "快", "婿"],
-  [["望", "忘"], "子", "成", "龍"],
-  [["言", "鹽"], "多", "必", "失"],
+  ["望", "子", ["成", "陳"], "龍"],
+  ["言", "多", "必", ["失", "濕"]],
 ];
 
 const buttonNext = document.querySelector(".button-next");
@@ -15,12 +15,58 @@ const scoreText = document.querySelector(".score");
 var isNewGame = localStorage.getItem("isNewGame");
 
 function generateQuestion(problem) {
-  for (i = 0; i < testInputs.length; i++) {
-    testInputs[i].textContent = problem[0][i];
-  }
+  for (i = 0; i < problem.length; i++) {
+    if (problem[i].length === 2) {
+      console.log(`problem words: ${problem[i]}`);
+      // create a new div element
+      const newDiv = document.createElement("div");
 
-  for (i = 0; i < testOthers.length; i++) {
-    testOthers[i].textContent = problem[i + 1];
+      // add class
+      newDiv.className = "letters flex-container-test";
+
+      // add data attribute
+      newDiv.dataset.letter = "65";
+
+      // add the newly created element and its content into the DOM
+      var currentDiv = document.getElementById("problem-set");
+      currentDiv.appendChild(newDiv);
+
+      // add words to be chosen in the div element
+      for (j = 0; j < problem[i].length; j++) {
+        const newDivChild = document.createElement("div");
+        newDivChild.className = "letter flex-container-test-input";
+        newDivChild.dataset.letter = "65";
+        newDivChild.dataset.answer = "";
+
+        // set other attribute
+        tabIndex = j + 1;
+        newDivChild.setAttribute("tabindex", tabIndex);
+        newDivChild.setAttribute("onclick", "checked(event)");
+
+        // add textContent
+        newDivChild.textContent = problem[i][j];
+
+        var currentDiv = document.querySelector(".flex-container-test");
+        currentDiv.appendChild(newDivChild);
+      }
+    } else {
+      // create a new div element
+      const newDiv = document.createElement("div");
+
+      // add class
+      newDiv.className = "letter flex-container-test-other";
+
+      // add data attribute
+      newDiv.dataset.letter = "65";
+
+      // add text
+      newDiv.textContent = problem[i];
+
+      // add the newly created element and its content into the DOM
+      let currentDiv = document.getElementById("problem-set");
+      currentDiv.appendChild(newDiv);
+      console.log(newDiv.textContent);
+    }
   }
 }
 
@@ -53,7 +99,7 @@ if (!isNewGame) {
 /*
   The function 'checked'  compares the user's choice with the correct answer and return the result.
   The function 'revealAnswer' changes the input color according to the result.
-  The funciton 'updateScore' updates the score.
+  The function 'updateScore' updates the score.
   */
 
 function checked(e) {
