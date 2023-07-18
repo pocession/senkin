@@ -13,20 +13,21 @@ const problem = data[Math.floor(Math.random() * data.length)];
 const correctAnswer = problem[0][0];
 const scoreText = document.querySelector(".score");
 var isNewGame = localStorage.getItem("isNewGame");
+
+function generateQuestion(problem) {
+  for (i = 0; i < testInputs.length; i++) {
+    testInputs[i].textContent = problem[0][i];
+  }
+
+  for (i = 0; i < testOthers.length; i++) {
+    testOthers[i].textContent = problem[i + 1];
+  }
+}
+
 let score, result;
 const init = function initiate() {
   score = 0;
   result = 0;
-
-  function generateQuestion(problem) {
-    for (i = 0; i < testInputs.length; i++) {
-      testInputs[i].textContent = problem[0][i];
-    }
-
-    for (i = 0; i < testOthers.length; i++) {
-      testOthers[i].textContent = problem[i + 1];
-    }
-  }
 
   generateQuestion(problem);
   console.log(`At the initiation: ${isNewGame}`);
@@ -38,15 +39,6 @@ const play = function playGame() {
   result = Number(localStorage.getItem("result"));
   scoreText.textContent = localStorage.getItem("score");
 
-  function generateQuestion(problem) {
-    for (i = 0; i < testInputs.length; i++) {
-      testInputs[i].textContent = problem[0][i];
-    }
-
-    for (i = 0; i < testOthers.length; i++) {
-      testOthers[i].textContent = problem[i + 1];
-    }
-  }
   generateQuestion(problem);
   console.log(`During the play: ${isNewGame}`);
 };
