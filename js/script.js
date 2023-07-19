@@ -12,7 +12,69 @@ const problem = data[Math.floor(Math.random() * data.length)];
 const correctAnswer = problem[0][0];
 const scoreText = document.querySelector(".score");
 var isNewGame = localStorage.getItem("isNewGame");
-const countDownSec = 5 * data.length + 1;
+const finishDiv = document.querySelector(".finish");
+
+// functions for timer
+function timer() {
+  console.log("timer start!");
+
+  // set count down seconds
+  countdownTimeSec = 5 + 1;
+
+  // get current time (in the format of seconds)
+  var Time = new Date();
+  const startTimeSec =
+    Time.getHours() * 3600 + Time.getMinutes() * 60 + Time.getSeconds();
+
+  // count down and update text
+  timer = setInterval(
+    function (startTimeSec) {
+      var Time = new Date();
+      const currentTimeSec =
+        Time.getHours() * 3600 + Time.getMinutes() * 60 + Time.getSeconds();
+      const lapsedTimeSec = currentTimeSec - startTimeSec;
+      const updatedTimeSec = countdownTimeSec - lapsedTimeSec;
+
+      // draw timer
+      // draw circle
+      const canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      ctx.beginPath();
+      ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+      ctx.stroke();
+
+      // clean the timer
+      var ctx = canvas.getContext("2d");
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // update the secondes
+      ctx.font = canvas.height / 4 + "px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillStyle = "rgb(0, 0, 0)";
+      ctx.fillText(updatedTimeSec, 95, 50);
+
+      // draw the circle again
+      var ctx = canvas.getContext("2d");
+      ctx.beginPath();
+      ctx.arc(95, 50, 40, 0, 2 * Math.PI);
+      ctx.stroke();
+      if (updatedTimeSec === 0 || answeredQuestionNum === data.length) {
+        localStorage.clear();
+        clearInterval(timer);
+        finishDiv.textContent = "It's finished!";
+      }
+      console.log(updatedTimeSec);
+      return (isNewGame = false);
+    },
+    1000,
+    startTimeSec
+  );
+}
+
+const updatedTimeSec = timer();
 
 /*
 I try not to call a function inside a function. 
@@ -75,19 +137,24 @@ function generateQuestion(problem) {
   }
 }
 
-let score, result;
+let score, result, answeredQuestionNum;
 const init = function initiate() {
   score = 0;
   result = 0;
+  answeredQuestionNum = 0;
+  finishDiv.textContent = "";
 
   generateQuestion(problem);
   console.log(`At the initiation: ${isNewGame}`);
 };
 
 const play = function playGame() {
-  console.log(`Game continues, score: ${score}, result: ${result}.`);
+  console.log(
+    `Game continues, score: ${score}, result: ${result}, how many questions answered: ${answeredQuestionNum}.`
+  );
   score = Number(localStorage.getItem("score"));
   result = Number(localStorage.getItem("result"));
+  answeredQuestionNum = Number(localStorage.getItem("answeredQuestionNum"));
   scoreText.textContent = localStorage.getItem("score");
 
   generateQuestion(problem);
@@ -148,13 +215,20 @@ function updateScore(e) {
   score += result;
   scoreText.textContent = score.toString();
   isNewGame = false;
+  answeredQuestionNum += 1;
   localStorage.setItem("score", score);
   localStorage.setItem("result", result);
   localStorage.setItem("isNewGame", isNewGame);
-  setTimeout(() => {
-    location.reload();
-    console.log("reloaded!");
-  }, 3000);
+  localStorage.setItem("answeredQuestionNum", answeredQuestionNum);
+  if (answeredQuestionNum === data.length) {
+    localStorage.clear();
+    finishDiv.textContent = "It's finished!!";
+  } else {
+    setTimeout(() => {
+      location.reload();
+      console.log("reloaded!");
+    }, 500);
+  }
 }
 
 buttonNext.addEventListener("click", updateScore);
@@ -163,76 +237,7 @@ buttonNext.addEventListener("click", updateScore);
 function reload() {
   localStorage.clear();
   location.reload();
+  finishDiv.textContent = "";
   console.log("reloaded and clean all the local storage!!");
 }
 buttonReload.addEventListener("click", reload);
-
-// functions for timer
-function drawCircle() {
-  var ctx = c.getContext("2d");
-  ctx.beginPath();
-  ctx.arc(95, 50, 40, 0, 2 * Math.PI);
-  ctx.stroke();
-}
-
-function drawText(text) {
-  var ctx = c.getContext("2d");
-  ctx.font = c.height / 4 + "px Arial";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillStyle = "rgb(0, 0, 0)";
-
-  ctx.fillText(text, 95, 50);
-}
-
-function cleanText() {
-  var ctx = c.getContext("2d");
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.clearRect(0, 0, c.width, c.height);
-}
-
-function getTotalSecond() {
-  const Time = new Date();
-  const TimeTotalSec =
-    Time.getHours() * 3600 + Time.getMinutes() * 60 + Time.getSeconds();
-  return TimeTotalSec;
-}
-
-function updateText(startTimeSec) {
-  cleanText();
-  drawCircle();
-
-  const currentTimeSec = getTotalSecond();
-
-  const timeLapsed = currentTimeSec - startTimeSec;
-  const timeUpdated = countDownSec - timeLapsed;
-  if (timeUpdated === 0) {
-    clearInterval(timer);
-    console.log("stop!");
-  }
-
-  var ctx = c.getContext("2d");
-  ctx.font = c.height / 4 + "px Arial";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillStyle = "rgb(0, 0, 0)";
-  ctx.fillText(timeUpdated, 95, 50);
-}
-
-const c = document.getElementById("canvas");
-let isCount = false;
-
-drawCircle();
-c.addEventListener("mousedown", (e) => {
-  if (isCount) return; // stop count down if it is already started
-  drawText(countDownSec);
-  isCount = true;
-
-  const startTimeSec = getTotalSecond();
-  cleanText();
-  drawCircle();
-
-  timer = setInterval(updateText, 1000, startTimeSec);
-  isCount = false;
-});

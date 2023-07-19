@@ -96,6 +96,13 @@ html {
   position: relative;
 }
 
+.finish {
+  font-size: 32px;
+  top: 5%;
+  text-align: center;
+  position: relative;
+}
+
 .canvas {
   border: 5px solid #000000;
 }
