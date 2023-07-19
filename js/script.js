@@ -1,18 +1,30 @@
 // Select elements
 const data = [
-  [["乘", "成"], "龍", "快", "婿"],
-  ["望", "子", ["成", "陳"], "龍"],
-  ["言", "多", "必", ["失", "濕"]],
+  [["乘", "成", 0], "龍", "快", "婿"],
+  ["望", "子", ["陳", "成", 1], "龍"],
+  ["言", "多", "必", ["濕", "失", 1]],
+  ["萬", ["眾", "重", 0], "一", "心"],
 ];
 
 const buttonNext = document.querySelector(".button-next");
 const buttonReload = document.querySelector(".button-reload");
 const testOthers = document.querySelectorAll(".flex-container-test-other");
 const problem = data[Math.floor(Math.random() * data.length)];
-const correctAnswer = problem[0][0];
 const scoreText = document.querySelector(".score");
 var isNewGame = localStorage.getItem("isNewGame");
 const finishDiv = document.querySelector(".finish");
+
+function generateCorrectAnswer(problem) {
+  for (i = 0; i < problem.length; i++) {
+    if (problem[i].length === 3) {
+      const correctAnswerIndex = Number(problem[i][2]);
+      const correctAnswer = problem[i][correctAnswerIndex];
+      return correctAnswer;
+    }
+  }
+}
+
+const correctAnswer = generateCorrectAnswer(problem);
 
 // functions for timer
 function timer() {
@@ -83,7 +95,7 @@ This function itself is too long and complicated, it's better to wrap as an inde
 */
 function generateQuestion(problem) {
   for (i = 0; i < problem.length; i++) {
-    if (problem[i].length === 2) {
+    if (problem[i].length === 3) {
       console.log(`problem words: ${problem[i]}`);
       // create a new div element
       const newDiv = document.createElement("div");
@@ -99,7 +111,7 @@ function generateQuestion(problem) {
       currentDiv.appendChild(newDiv);
 
       // add words to be chosen in the div element
-      for (j = 0; j < problem[i].length; j++) {
+      for (j = 0; j < problem[i].length - 1; j++) {
         const newDivChild = document.createElement("div");
         newDivChild.className = "letter flex-container-test-input";
         newDivChild.dataset.letter = "65";
