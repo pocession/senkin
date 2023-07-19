@@ -14,6 +14,11 @@ const scoreText = document.querySelector(".score");
 var isNewGame = localStorage.getItem("isNewGame");
 const countDownSec = 5 * data.length + 1;
 
+/*
+I try not to call a function inside a function. 
+But generateQuestion() is an exception. 
+This function itself is too long and complicated, it's better to wrap as an independent function
+*/
 function generateQuestion(problem) {
   for (i = 0; i < problem.length; i++) {
     if (problem[i].length === 2) {
