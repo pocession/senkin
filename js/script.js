@@ -97,10 +97,10 @@ if (!isNewGame) {
 
 // play the game and check the answer
 /*
-  The function 'checked'  compares the user's choice with the correct answer and return the result.
-  The function 'revealAnswer' changes the input color according to the result.
-  The function 'updateScore' updates the score.
-  */
+The function 'checked'  compares the user's choice with the correct answer and return the result.
+The function 'revealAnswer' changes the input color according to the result.
+The function 'updateScore' changes the input color according to the result as well as updating the score.
+*/
 
 function checked(e) {
   /* 
@@ -127,21 +127,19 @@ function checked(e) {
   }
 }
 
-function revealAnswer(item) {
-  if (item.dataset.answer === "1") {
-    console.log("right answer");
-    item.style.backgroundColor = "green";
-  } else if (item.dataset.answer === "-1") {
-    console.log("wrong answer");
-    item.style.backgroundColor = "red";
-  } else {
-    return;
-  }
-}
-
 function updateScore(e) {
   const testInputs = document.querySelectorAll(".flex-container-test-input");
-  testInputs.forEach((item) => revealAnswer(item));
+  testInputs.forEach((item) => {
+    if (item.dataset.answer === "1") {
+      console.log("right answer");
+      item.style.backgroundColor = "green";
+    } else if (item.dataset.answer === "-1") {
+      console.log("wrong answer");
+      item.style.backgroundColor = "red";
+    } else {
+      return;
+    }
+  });
   score += result;
   scoreText.textContent = score.toString();
   isNewGame = false;
