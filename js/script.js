@@ -78,7 +78,6 @@ function timer() {
         clearInterval(timer);
         finishDiv.textContent = "It's finished!";
       }
-      console.log(updatedTimeSec);
       return (isNewGame = false);
     },
     1000,
@@ -96,7 +95,6 @@ This function itself is too long and complicated, it's better to wrap as an inde
 function generateQuestion(problem) {
   for (i = 0; i < problem.length; i++) {
     if (problem[i].length === 3) {
-      console.log(`problem words: ${problem[i]}`);
       // create a new div element
       const newDiv = document.createElement("div");
 
@@ -144,7 +142,6 @@ function generateQuestion(problem) {
       // add the newly created element and its content into the DOM
       let currentDiv = document.getElementById("problem-set");
       currentDiv.appendChild(newDiv);
-      console.log(newDiv.textContent);
     }
   }
 }
