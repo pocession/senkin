@@ -7,7 +7,6 @@ const data = [
 
 const buttonNext = document.querySelector(".button-next");
 const buttonReload = document.querySelector(".button-reload");
-const testInputs = document.querySelectorAll(".flex-container-test-input");
 const testOthers = document.querySelectorAll(".flex-container-test-other");
 const problem = data[Math.floor(Math.random() * data.length)];
 const correctAnswer = problem[0][0];
@@ -104,13 +103,18 @@ if (!isNewGame) {
   */
 
 function checked(e) {
+  /* 
+  testInputs is now dynamically generated.
+  So it needs to ba declared after it is generated
+  */
+
   e = e;
-  Inputs = testInputs;
+  const testInputs = document.querySelectorAll(".flex-container-test-input");
   var target = e.target;
 
   // this loop changes the bg color of both inputs to white when clicked.
-  for (var i = 0; i < Inputs.length; i++) {
-    var item = Inputs[i];
+  for (var i = 0; i < testInputs.length; i++) {
+    var item = testInputs[i];
     item.style.backgroundColor = "white";
   }
   target.style.backgroundColor = "#0eb2ff";
@@ -136,6 +140,7 @@ function revealAnswer(item) {
 }
 
 function updateScore(e) {
+  const testInputs = document.querySelectorAll(".flex-container-test-input");
   testInputs.forEach((item) => revealAnswer(item));
   score += result;
   scoreText.textContent = score.toString();
