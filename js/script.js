@@ -135,25 +135,18 @@ function revealAnswer(item) {
   }
 }
 
-function refresh() {
-  location.reload();
-  console.log("reloaded!");
-}
-
-function saveScore(score, result, isNewGame) {
-  console.log(`Save score: ${score}, result:${result}`);
-  localStorage.setItem("score", score);
-  localStorage.setItem("result", result);
-  localStorage.setItem("isNewGame", isNewGame);
-}
-
 function updateScore(e) {
   testInputs.forEach((item) => revealAnswer(item));
   score += result;
   scoreText.textContent = score.toString();
   isNewGame = false;
-  saveScore(score, result, isNewGame);
-  setTimeout(refresh, 3000);
+  localStorage.setItem("score", score);
+  localStorage.setItem("result", result);
+  localStorage.setItem("isNewGame", isNewGame);
+  setTimeout(() => {
+    location.reload();
+    console.log("reloaded!");
+  }, 3000);
 }
 
 buttonNext.addEventListener("click", updateScore);
