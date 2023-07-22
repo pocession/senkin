@@ -45,14 +45,14 @@ To run the game locally, follow these steps:
 
 ## How the Problem Set is Generated
 
-The problem set is generated using a Python script called [generate_problem_set_byQuery.py](./problemset/generate_problem_set_byQuery.py). This script randomly selects idioms and their corresponding homophonic words from a predefined dataset. The dataset contains various idioms and homophonic words stored in a specific format.
+The problem set is generated using a Python script called [generate_problem_set_byQuery.py](/problemset/generate_problem_set_byQuery.py). This script randomly selects idioms and their corresponding homophonic words from a predefined dataset. The dataset contains various idioms and homophonic words stored in a specific format.
 
 ## Files and Structure
 
 - `index.html`: The main HTML file for the game user interface.
 - `style.css`: The CSS file for styling the game interface.
 - `js/script.js`: The JavaScript file containing game logic and functionality.
-- `.problemset/generate_problem_set_byQuery.py`: The Python script to generate the problem set.
+- `problemset/generate_problem_set_byQuery.py`: The Python script to generate the problem set.
 
 ## Additional Features
 
