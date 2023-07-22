@@ -51,21 +51,22 @@ def get_response(dict_oneWord, test_word):
 # store the test string, test word, and the response as JavaScript array format
 def get_output_string(response, test_string, test_index, test_word):
     response_word = response
-
-    # get the string used in problem set (JS array format)
-    test_list = list(test_string)
-    output_str = "["
-    answer_index = (random.randint(1, 2) - 1)
-    for i in range(len(test_list)):
-        if i == test_index:
-            if answer_index == 0:
-                output_str = output_str + "[" + "'" + test_list[i] + "'" + "," + "'" + response_word + "'" + "," + str(answer_index) + "],"
+    if test_word != response_word:
+        # get the string used in problem set (JS array format)
+        test_list = list(test_string)
+        output_str = "["
+        answer_index = (random.randint(1, 2) - 1)
+        for i in range(len(test_list)):
+            if i == test_index:
+                if answer_index == 0:
+                    output_str = output_str + "[" + "'" + test_list[i] + "'" + "," + "'" + response_word + "'" + "," + str(answer_index) + "],"
+                else:
+                    output_str = output_str + "[" + "'" + response_word + "'" + "," + "'" + test_list[i] + "'" + "," + str(answer_index) + "],"
             else:
-                output_str = output_str + "[" + "'" + response_word + "'" + "," + "'" + test_list[i] + "'" + "," + str(answer_index) + "],"
-        else:
-            output_str = output_str + "'" + test_list[i] + "'" + ","
-    output_str = output_str + "]"
-    return output_str
+                output_str = output_str + "'" + test_list[i] + "'" + ","
+        output_str = output_str + "]"
+        return output_str
+
 
 # loop the functions to generate problem set
 
@@ -74,7 +75,8 @@ for i in range(120):
     test_string, test_word, test_index = generate_test_string(idiom_highFQ)
     response = get_response(dict_oneWord, test_word)
     output_str = get_output_string(response, test_string, test_index, test_word)
-    output_list.append(output_str)
+    if output_str != None:
+        output_list.append(output_str)
     
 output_list
 print ('%s' % ', '.join(map(str, output_list)))
