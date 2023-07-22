@@ -7,6 +7,7 @@ This is the repository for the **Senkin (千金)** project. It's a JavaScript-ba
 - HTML
 - CSS
 - JavaScript
+- Python
 
 ## Getting Started
 
