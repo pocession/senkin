@@ -38,7 +38,7 @@ To run the game locally, follow these steps:
 
 4. **Game Completion**:
 
-   - The game consists of 120 questions. Once you have answered all the questions, the game will be marked as finished.
+   - Once you have answered 10 the questions, the game will be marked as finished.
 
 5. **Reloading the Game**:
    - If you wish to restart the game, click the "Reload" button. This will reset the game and clear your previous score.
