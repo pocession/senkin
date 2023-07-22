@@ -1,6 +1,6 @@
 # Senkin (千金)
 
-This is the repository for the **Senkin (千金)** project. It's a JavaScript-based game that challenges players to select the correct Chinese word from multiple options within a time limit. The game aims to improve vocabulary and language recognition skills in Chinese while providing an enjoyable gaming experience.
+It's a JavaScript-based game that challenges players to select the correct Chinese word for commonly-used idioms within a time limit. The game aims to improve vocabulary and language recognition skills in Chinese while providing an enjoyable gaming experience.
 
 ## Technologies Used
 
