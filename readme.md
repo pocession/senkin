@@ -18,13 +18,40 @@ To run the game locally, follow these steps:
 
 ## How to Play
 
-1. When the game starts, you will see a set of word options displayed on the screen.
-2. Select the correct word that matches the given prompt.
-3. Click the "Next" button to proceed to the next question.
-4. The game will keep track of your score, displayed at the top of the screen.
-5. The timer at the bottom of the screen indicates the remaining time for each question.
-6. Once the time is up, the game will display the correct answer and update your score.
-7. Continue playing and try to achieve the highest score possible!
+1. **Opening the Game**:
+
+   - Open the `index.html` file in your web browser.
+   - The game interface will be displayed, showing the problem set, score, and buttons.
+
+2. **Game Rules**:
+
+   - The game consists of a series of questions, and each question includes an idiom and multiple homophonic words.
+   - Your task is to identify the correct homophonic word for each idiom.
+   - Click on the homophonic word that you think is correct. The selected word will turn blue to indicate your choice.
+
+3. **Scoring**:
+
+   - For each correct answer, you earn one point.
+   - For each incorrect answer, you lose one point.
+   - Your total score is displayed at the top-right corner of the game interface.
+
+4. **Game Completion**:
+
+   - The game consists of 120 questions. Once you have answered all the questions, the game will be marked as finished.
+
+5. **Reloading the Game**:
+   - If you wish to restart the game, click the "Reload" button. This will reset the game and clear your previous score.
+
+## How the Problem Set is Generated
+
+The problem set is generated using a Python script called [generate_problem_set_byQuery.py](./problemset/generate_problem_set_byQuery.py). This script randomly selects idioms and their corresponding homophonic words from a predefined dataset. The dataset contains various idioms and homophonic words stored in a specific format.
+
+## Files and Structure
+
+- `index.html`: The main HTML file for the game user interface.
+- `style.css`: The CSS file for styling the game interface.
+- `js/script.js`: The JavaScript file containing game logic and functionality.
+- `.problemset/generate_problem_set_byQuery.py`: The Python script to generate the problem set.
 
 ## Additional Features
 
