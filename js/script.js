@@ -332,7 +332,7 @@ function updateScore(e) {
   localStorage.setItem("result", result);
   localStorage.setItem("isNewGame", isNewGame);
   localStorage.setItem("answeredQuestionNum", answeredQuestionNum);
-  if (answeredQuestionNum === data.length) {
+  if (answeredQuestionNum === 10) {
     localStorage.clear();
     finishDiv.textContent = "It's finished!!";
   } else {
