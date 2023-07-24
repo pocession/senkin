@@ -74,4 +74,5 @@ Special thanks to [公視](https://www.pts.org.tw/2021wonderful_word/) for inspi
   <img src="./screenshot/next1.png" width="300" />
   <img src="./screenshot/next2.png" width="300" /> 
   <img src="./screenshot/reload.png" width="300" />
+    <img src="./screenshot/finish.png" width="300" />
 </p>
