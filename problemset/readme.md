@@ -8,20 +8,20 @@ To run the script, follow these steps:
 
 1. Prepare the Data Files:
 
-   - Create a CSV file containing the list of high-frequency idioms. The file should have a column named 'idiom' containing the idioms.
+   - Create a CSV file containing the list of the medium- to high-frequency idioms. The file should have a column named 'idiom' containing the idioms.
    - Create another CSV file containing the full dictionary data. Ensure the file has the following columns: 'word', 'word_num', 'homophoney', 'pronunciation', and 'han_pronunciation' representing words, word count, homophony, pronunciation, and Chinese pronunciation, respectively.
 
 2. Running the Script:
 
    - Open your terminal or command prompt.
    - Navigate to the directory where the script is located.
-   - Execute the script by providing the file paths of the high-frequency idioms CSV and full dictionary CSV as command-line arguments. For example:
+   - Execute the script by providing the file paths of the medium- to high-frequency idioms CSV, full dictionary CSV, and the number of problem set as command-line arguments. For example:
      ```
-     python generate_problem_set_byQuery.py path/to/idiom_db_highFQ.csv path/to/dict_revised_2015_20230626.csv
+     python generate_problem_set_byQuery.py path/to/idiom_db_subset_FQ_10.csv path/to/dict_revised_2015_20230626.csv 200
      ```
 
 3. Output:
-   - The script will generate a test problem set of 120 questions.
+   - The script will generate a test problem set containing the number of questions you specify.
    - Each question will include a test string (idiom), a randomly selected word from the test string, and a response word (homophonic word) from the full dictionary dataset.
    - The output will be a list of JavaScript array formats representing the problem sets. Each element in the list contains the test string, test word, and response word in the following format: `[<test_string>, <test_word>, <response_word>, <answer_index>]`. The `answer_index` represents the position of the response word (0 for before the test word, 1 for after the test word).
 

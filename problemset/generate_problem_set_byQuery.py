@@ -8,12 +8,15 @@ import numpy as np
 # And cross-query the homophoney word in full dictionary
 
 # read high-frequency idioms
-idiom_highFQ_path = str(sys.argv[1])
-idiom_highFQ = pd.read_csv(idiom_highFQ_path)
+idiom_path = str(sys.argv[1])
+idiom_highFQ = pd.read_csv(idiom_path)
 
 # read full dictionary
 dict_all_path = str(sys.argv[2])
 dict_all = pd.read_csv(dict_all_path)
+
+# Set how many idioms are randomly selected
+idiom_num = int(sys.argv[3])
 
 # filter vocabularies containing only one word
 def get_one_word_subset(dict_all):
@@ -71,7 +74,7 @@ def get_output_string(response, test_string, test_index, test_word):
 # loop the functions to generate problem set
 
 output_list = []
-for i in range(120):
+for i in range(idiom_num):
     test_string, test_word, test_index = generate_test_string(idiom_highFQ)
     response = get_response(dict_oneWord, test_word)
     output_str = get_output_string(response, test_string, test_index, test_word)
